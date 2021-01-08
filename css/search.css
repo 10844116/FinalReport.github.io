@@ -1,0 +1,30 @@
+.search-container {
+    float:right;
+      position: fixed;
+      z-index: 99;
+      top:1%;
+      left: 84%;
+  }
+  
+  .search-container input[type=text] {
+    padding: 6.4px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+    width: 160px;
+    height: auto;
+  }
+  
+  .search-container button {
+    float: right;
+    position: fixed;
+    z-index: 99;
+    margin-top: 8px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+    height: 32px;
+    width: 32px;
+  }
+  
