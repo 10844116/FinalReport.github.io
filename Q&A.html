@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Q&A</title>
+  <style>
+    @import url(css/QA.css);
+  </style>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="css/search.css" rel="stylesheet" type="text/css">
+  <link rel="icon" href="images/cake52.png">
+  <script type="text/javascript" src="js/utils.js"></script>
+
+  <div id="mySidepanel" class="sidepanel">
+    <a href="#" class="closebtn" onclick="closeNav()">×</a>
+    <a href="Index.html">首頁</a>
+    <button class="dropdown-btn">商品分類<i class="fa fa-caret-down"></i></button>
+    <div class="dropdown-container">
+      <a href="ProdList.html">所有商品</a>
+      <a href="ProdList.html?cat=2">蛋糕</a>
+      <a href="ProdList.html?cat=3">塔類</a>
+      <a href="ProdList.html?cat=4">餅乾</a>
+      <a href="ProdList.html?cat=5">常溫點心</a>
+    </div>
+    <a href="Promotion.html">促銷活動</a>
+    <a href="Q&A.html">常見問題</a>
+    <a href="About.html">關於我們</a>
+  </div>
+  <button class="openbtn" onclick="openNav()">☰ </button>
+
+  <div style="position: fixed;top: 1.1%;left: 5.5%;"><img src="images/D33.png" width="140" height="49"></div>
+
+  <div class="img2-header">
+    <div class="dropdown">
+      <img onclick="myFunction()" class="dropbtn" src="images/images.png" width="45px" height="45" title="會員專區"></img>
+      <div id="myDropdown" class="dropdown-content">
+
+        <span onclick="document.getElementById('id01').style.display='block'"><a href="#"
+            style="padding: 12px 16px; ">登入</a></span>
+        <span onclick="document.getElementById('id02').style.display='block'"><a href="#"
+            style="padding: 12px 16px; ">註冊</a></span>
+
+        <a onclick="chkLogin()" href="PersonalInfo.html">個人資料修改</a>
+        <a onclick="chkLogin()" href="Order.html">訂單紀錄</a>
+        <a onclick="doLogout()" href="Index.html">登出</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="img1-header">
+    <a onclick="chkLogin()" href="ShopCart.html"><img src="images/shopcart2.png" width="50" height="50" title="購物車">
+    </a>
+  </div>
+
+  <!-- 會員登入 -->
+  <div id="id01" class="modal">
+    <form class="modal-content animate" style="width: 350px;">
+      <div class="imgcontainer">
+        <span onclick="document.getElementById('id01').style.display='none'" class="close"
+          title="Close Modal">&times;</span>
+        <div class="contant02" style="font-size:25px;">會員登入</div>
+      </div>
+
+      <div class="container">
+        <label for="uname"><b>帳號</b></label>
+        <span class="ipt"><input id="user" type="text" placeholder="輸入帳號" name="uname" required></span>
+
+        <label for="psw"><b>密碼</b></label>
+        <span class="ipt"><input type="password" placeholder="輸入密碼" name="psw" required></span>
+
+        <span class="btn02"><button onclick="doLogin()" type="display: flex;" class="sign">登入</button></span>
+        <label>
+          <span class="ipt"><input id="chkRemem" type="checkbox" checked="checked" name="remember">記住我的帳號</span>
+        </label>
+      </div>
+
+      <div class="container" style="background-color:#dddd; ">
+        <button type="button" onclick="document.getElementById('id01').style.display='none'"
+          class="cancelbtn">取消</button>
+        <span onclick="document.getElementById('id01').style.display='none'; 
+            document.getElementById('id02').style.display='block'" class="register" style="margin-left: 72px;"><a
+            href="#">免費註冊</a></span>
+        <span class="psw" onclick="document.getElementById('id01').style.display='none';
+                alertMsg('新密碼已寄送至您的手機, 請重新登入!')">
+          <a href="#">忘記密碼?</a></span>
+
+      </div>
+    </form>
+  </div>
+
+  <!-- 註冊會員 -->
+  <div id="id02" class="modal">
+    <form class="modal-content animate" style="width: 350px;" action="/action2_page.php" method="post">
+      <div class="imgcontainer">
+        <span onclick="document.getElementById('id02').style.display='none'" class="close"
+          title="Close Modal">&times;</span>
+        <div class="contant02" style="font-size:25px;">註冊會員</div>
+      </div>
+
+      <div class="container">
+        <label for="uid"><b>姓名</b></label>
+        <span class="ipit"><input type="text" placeholder="請輸入真實姓名" name="uid" required></span>
+
+        <label for="cellpone"><b>手機號碼</b></label>
+        <span class="ipt"><input type="text" placeholder="請輸手機號碼" name="cellphone" required></span>
+
+        <label for="uname"><b>帳號</b></label>
+        <span class="ipt"><input type="text" placeholder="請輸入帳號" name="uname" required></span>
+
+        <label for="psw"><b>設定密碼</b></label>
+        <span class="ipt"><input type="password" placeholder="請輸入密碼" id="psw" required></span>
+
+        <label for="pswconfirm"><b>密碼確定</b></label>
+        <span class="ipt"><input type="password" placeholder="請再次輸入密碼" id="pswconfirm" required></span>
+
+        <span class="btn03" onclick="checkPassword()"><button type="submit" class="sign">立即註冊</button></span>
+      </div>
+
+      <div class="container" style="background-color:#dddd; ">
+        <button type="button" onclick="document.getElementById('id02').style.display='none'"
+          class="cancelbtn">取消註冊</button>
+      </div>
+    </form>
+  </div>
+
+  <!--搜尋-->
+  <div class="search-container">
+    <form id="frmSearch" action="ProdList.html">
+      <input id="inSearchTxt" type="text" placeholder="商品查詢" name="cat">
+      <button onclick="onSearch()" type="submit">
+        <i class="fa fa-search"></i>
+      </button>
+    </form>
+  </div>
+
+  <script>
+    // 密碼驗證
+    function checkPassword() {
+      if (document.getElementById("psw").value !=
+        document.getElementById("pswconfirm").value) {
+        alert("驗證密碼失敗!，請重新輸入!")
+      }
+
+    }
+
+    //  show alert message
+    function alertMsg(msg) {
+      alert(msg);
+    }
+
+    // Sidenav(側拉菜單)
+    function openNav() {
+      document.getElementById("mySidepanel").style.width = "200px";
+    }
+
+    function closeNav() {
+      document.getElementById("mySidepanel").style.width = "0";
+    }
+
+    var dropdown = document.getElementsByClassName("dropdown-btn");
+    var i;
+
+    //Dropdown Menu in Sidenav(Sidenav中的下拉菜單)
+    for (i = 0; i < dropdown.length; i++) {
+      dropdown[i].addEventListener("click", function () {
+        this.classList.toggle("active");
+        var dropdownContent = this.nextElementSibling;
+        if (dropdownContent.style.display === "block") {
+          dropdownContent.style.display = "none";
+        } else {
+          dropdownContent.style.display = "block";
+        }
+      });
+    }
+
+    // Clickable Dropdown(點擊菜單)
+    function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    window.onclick = function (event) {
+      if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+  </script>
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="txt">
+      <p>常見問題</p>
+    </div>
+    <img class="imgdown" src="images/A1466594873.jpg" style="width: 522px;height: 300px;">
+    <div class="layer">
+      <p><b>Q：如何註冊會員？</b><br>A：請點擊網頁右上方的頭像圖示，再點擊註冊便會跳出註冊會員的視窗，填寫完畢所需資料後送出，即完成會員註冊，歡迎您們成為D33 Cake Shop的一份子!!</p>
+    </div>
+    <img class="imgdown0" src="images/圖片1.png" style="width: 522px;height: 300px;">
+    <div class="layer0 ">
+      <p>
+        <b>Q：有哪些取貨和付款方式？</b><br>A：目前取貨方式提供親自來店取貨、宅配以及超商店到店。付款方式則有銀行匯款、ATM轉帳以及貨到付款。貨到付款僅提供200元以下的商品使用，金額高於200元的商品請在下訂後3天完成匯款，否則將會取消訂單，如有不便敬請見諒。
+      </p>
+    </div>
+    <img class="imgdown" src="images/e39ddd6527974efaa713dd20434fab1d.jpeg" style="width: 522px;height: 300px;">
+    <div class="layer">
+      <p><b>Q：商品保存方式？</b><br>A：請參照各項商品的介紹，內有詳細說明。糕點類建議您們在一天內食用完畢，才不會錯過糕點的最佳賞味期喔~餅乾類則建議放置於乾燥處，以免受潮。</p>
+    </div>
+  </div>
+</body>
+
+<footer>
+  <div>
+    <img src="images/262312.jpg" width="75" height="75" style="position: relative; top: 24%;left: 730%;">
+  </div>
+  <div class="foot-text">
+    服務時間：周一至周五11:00~17:50<br>
+    聯絡資訊：(03)9921-8847<br>
+    地址：桃園市中壢區普忠里中北路200號<br>
+  </div>
+  <font style="align-items:center; color:white; position: absolute; top: 80%; left: 40%;">CYCUIM_20210109&copy; D33
+    All
+    Rights Reserved.</font>
+</footer>
+
+</html>

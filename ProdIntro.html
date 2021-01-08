@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品介紹</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="./spinbutton/js/jquery-1.4.4.min.js"></script>
+    <script src="./spinbutton/js/jquery-spin.js"></script>
+    <link href="css/prodintro.css" rel="stylesheet" type="text/css">
+    <link href="css/search.css" rel="stylesheet" type="text/css">
+    <link rel="icon" href="images/cake52.png">
+    <script type="text/javascript" src="js/utils.js"></script>
+
+
+
+    <div id="mySidepanel" class="sidepanel">
+        <a href="#" class="closebtn" onclick="closeNav()">×</a>
+        <a href="Index.html">首頁</a>
+        <button class="dropdown-btn">商品分類<i class="fa fa-caret-down"></i></button>
+        <div class="dropdown-container">
+            <a href="ProdList.html">所有商品</a>
+            <a href="ProdList.html?cat=2">蛋糕</a>
+            <a href="ProdList.html?cat=3">塔類</a>
+            <a href="ProdList.html?cat=4">餅乾</a>
+            <a href="ProdList.html?cat=5">常溫點心</a>
+        </div>
+        <a href="Promotion.html">促銷活動</a>
+        <a href="Q&A.html">常見問題</a>
+        <a href="About.html">關於我們</a>
+    </div>
+    <button class="openbtn" onclick="openNav()">☰ </button>
+
+    <div style="position: fixed;top: 1.1%;left: 5.5%;"><img src="images/D33.png" width="140" height="49"></div>
+
+    <div class="img2-header">
+        <div class="dropdown">
+            <img onclick="myFunction()" class="dropbtn" src="images/images.png" width="45px" height="45"
+                title="會員專區"></img>
+            <div id="myDropdown" class="dropdown-content">
+
+                <span onclick="document.getElementById('id01').style.display='block'"><a href="#"
+                        style="padding: 12px 16px; ">登入</a></span>
+                <span onclick="document.getElementById('id02').style.display='block'"><a href="#"
+                        style="padding: 12px 16px; ">註冊</a></span>
+
+                <a onclick="chkLogin()" href="PersonalInfo.html">個人資料修改</a>
+                <a onclick="chkLogin()" href="Order.html">訂單紀錄</a>
+                <a onclick="doLogout()" href="Index.html">登出</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 購物車 -->
+    <div class="img1-header">
+        <a onclick="chkLogin()" href="ShopCart.html"><img src="images/shopcart2.png" width="50" height="50" title="購物車">
+        </a>
+    </div>
+
+    <!--搜尋-->
+    <div class="search-container">
+        <form id="frmSearch" action="ProdList.html">
+            <input id="inSearchTxt" type="text" placeholder="商品查詢" name="cat">
+            <button onclick="onSearch()" type="submit">
+                <i class="fa fa-search"></i>
+            </button>
+        </form>
+    </div>
+
+    <!-- 會員登入 -->
+    <div id="id01" class="modal">
+        <form class="modal-content animate" style="width: 350px;">
+            <div class="imgcontainer">
+                <span onclick="document.getElementById('id01').style.display='none'" class="close"
+                    title="Close Modal">&times;</span>
+                <div class="contant02" style="font-size:25px;">會員登入</div>
+            </div>
+
+            <div class="container">
+                <label for="uname"><b>帳號</b></label>
+                <span class="ipt"><input id="user" type="text" placeholder="輸入帳號" name="uname" required></span>
+
+                <label for="psw"><b>密碼</b></label>
+                <span class="ipt"><input type="password" placeholder="輸入密碼" name="psw" required></span>
+
+                <span class="btn02"><button onclick="doLogin()" type="display: flex;" class="sign">登入</button></span>
+                <label>
+                    <span class="ipt"><input id="chkRemem" type="checkbox" checked="checked"
+                            name="remember">記住我的帳號</span>
+                </label>
+            </div>
+
+            <div class="container" style="background-color:#dddd; ">
+                <button type="button" onclick="document.getElementById('id01').style.display='none'"
+                    class="cancelbtn">取消</button>
+                <span onclick="document.getElementById('id01').style.display='none'; 
+            document.getElementById('id02').style.display='block'" class="register" style="margin-left: 72px;"><a
+                        href="#">免費註冊</a></span>
+                <span class="psw" onclick="document.getElementById('id01').style.display='none';
+                alertMsg('新密碼已寄送至您的手機, 請重新登入!')">
+                    <a href="#">忘記密碼?</a></span>
+
+            </div>
+        </form>
+    </div>
+
+    <!-- 註冊會員 -->
+    <div id="id02" class="modal">
+        <form class="modal-content animate" style="width: 350px;" action="/action2_page.php" method="post">
+            <div class="imgcontainer">
+                <span onclick="document.getElementById('id02').style.display='none'" class="close"
+                    title="Close Modal">&times;</span>
+                <div class="contant02" style="font-size:25px;">註冊會員</div>
+            </div>
+
+            <div class="container">
+                <label for="uid"><b>姓名</b></label>
+                <span class="ipit"><input type="text" placeholder="請輸入真實姓名" name="uid" required></span>
+
+                <label for="cellpone"><b>手機號碼</b></label>
+                <span class="ipt"><input type="text" placeholder="請輸手機號碼" name="cellphone" required></span>
+
+                <label for="uname"><b>帳號</b></label>
+                <span class="ipt"><input type="text" placeholder="請輸入帳號" name="uname" required></span>
+
+                <label for="psw"><b>設定密碼</b></label>
+                <span class="ipt"><input type="password" placeholder="請輸入密碼" id="psw" required></span>
+
+                <label for="pswconfirm"><b>密碼確定</b></label>
+                <span class="ipt"><input type="password" placeholder="請再次輸入密碼" id="pswconfirm" required></span>
+
+                <span class="btn03" onclick="checkPassword()"><button type="submit" class="sign">立即註冊</button></span>
+            </div>
+
+            <div class="container" style="background-color:#dddd; ">
+                <button type="button" onclick="document.getElementById('id02').style.display='none'"
+                    class="cancelbtn">取消註冊</button>
+            </div>
+        </form>
+    </div>
+
+
+
+
+    <script>
+        var curProd = null;
+        /*暫定資料*/
+        /* 以下是後端傳來的JSON Object的格式, 這些資料定義在前端用來測試用 */
+        var Prod2001 = {
+            "uid": "2001",
+            "ProdPic": "1196ea9c120242ac110004.jpg",
+            "Title": "草莓奶油蛋糕",
+            "Price": "120",
+            "Info": "酸甜的草莓搭上香濃的奶油" + "<br>" + "甜而不膩的極致享受",
+            "ExpiredDate": "保存期限：冷藏5天",
+            "CommentAry": [{
+                "Pic": "customer1.jpg",
+                "Name": "今晚吃雞",
+                "Date": "2020/10/3",
+                "StarCount": "4",
+                "Comment": "不膩，很香甜"
+            },
+            {
+                "Pic": "customer2.jpg",
+                "Name": "黃海",
+                "Date": "2020/12/30",
+                "StarCount": "3",
+                "Comment": "讚，值得推薦!"
+            },
+            {
+                "Pic": "customer3.jpg",
+                "Name": "大王叫我來巡山",
+                "Date": "2020/12/13",
+                "StarCount": "5",
+                "Comment": "非常好吃的點心，大小也適中，賣相佳"
+            }],
+            "RefProdAry": [{
+                "uid": "2002",
+                "Pic": "3578-600x600.jpg",
+                "Name": "黃檸檬蛋糕"
+            },
+            {
+                "uid": "2003",
+                "Pic": "1588062059-1914771198.jpg",
+                "Name": "鮮奶油芒果蛋糕"
+            },
+            {
+                "uid": "2004",
+                "Pic": "9579743.jpeg",
+                "Name": "草莓甜心杯子蛋糕"
+            },
+            {
+                "uid": "2005",
+                "Pic": "Brownie_4598a5d0a32f4770b6d1a8a5ed17af36.jpg",
+                "Name": "73%巧克力布朗尼"
+            },
+            {
+                "uid": "2006",
+                "Pic": "20200517172918_42.jpg",
+                "Name": "法式馬卡龍"
+            },
+            {
+                "uid": "2007",
+                "Pic": "11cceab6180242ac110003.jpg",
+                "Name": "火腿起司奶油鹹派"
+            },
+            {
+                "uid": "2008",
+                "Pic": "385431edf549405d877809a14028c762_3982w_2888h.jpg",
+                "Name": "繽紛水果塔"
+            },
+            {
+                "uid": "2009",
+                "Pic": "unnamed.jpg",
+                "Name": "抹茶瑞士捲"
+            }
+
+            ]
+        }
+
+        var Prod2002 = {
+            "uid": "2002",
+            "ProdPic": "3578-600x600.jpg",
+            "Title": "黃檸檬蛋糕",
+            "Price": "180",
+            "Info": "海綿蛋糕的部份洽到好處的濕潤" + "<br>" + "再加上清新的檸檬香氣 ",
+            "ExpiredDate": "保存期限：冷藏3天",
+            "CommentAry": [
+                {
+                    "Pic": "customer3.jpg",
+                    "Name": "陳丁發",
+                    "Date": "2020/11/30",
+                    "StarCount": "5",
+                    "Comment": "讚, 很香甜!"
+                },
+                {
+                    "Pic": "customer4.jpg",
+                    "Name": "乖小孩不說謊",
+                    "Date": "2020/4/20",
+                    "StarCount": "3",
+                    "Comment": "還算好吃!"
+                },
+                {
+                    "Pic": "customer5.jpg",
+                    "Name": "靜靜我愛你",
+                    "Date": "2020/1/13",
+                    "StarCount": "5",
+                    "Comment": "非常好吃, 讚!"
+                }],
+            "RefProdAry": [
+                {
+                    "uid": "2003",
+                    "Pic": "1588062059-1914771198.jpg",
+                    "Name": "鮮奶油芒果蛋糕"
+                },
+                {
+                    "uid": "2004",
+                    "Pic": "5706ec80f2f645e3b3810eb154d7cfb1_1080w_1619h.jpg",
+                    "Name": "蒙布朗栗子蛋糕"
+                },
+                {
+                    "uid": "2005",
+                    "Pic": "ff3d5e261358d47c5b64134b6a688b5fd5d4691e.jpg",
+                    "Name": "狐狸屁屁白玉抹茶塔"
+                },
+                {
+                    "uid": "2001",
+                    "Pic": "1196ea9c120242ac110004.jpg",
+                    "Name": "草莓奶油蛋糕"
+                },
+                {
+                    "uid": "2006",
+                    "Pic": "b5571c793c3744717f0dd286bc181121.jpg",
+                    "Name": "貓咪餅乾"
+                }]
+        };
+
+        var Prod2003 = {
+            "uid": "2003",
+            "ProdPic": "1588062059-1914771198.jpg",
+            "Title": "鮮奶油芒果蛋糕",
+            "Price": "200",
+            "Info": "選用了香甜飽滿的愛文芒果做為內餡帶來了滿滿的夏日氣氛" + "<br>" + "愛吃芒果的人絕對不可錯過",
+            "ExpiredDate": "保存期限：冷藏2天",
+            "CommentAry": [
+                {
+                    "Pic": "customer9.jpg",
+                    "Name": "陳山河",
+                    "Date": "2020/11/30",
+                    "StarCount": "5",
+                    "Comment": "讚, 真好吃!"
+                },
+                {
+                    "Pic": "customer2.jpg",
+                    "Name": "Vivian",
+                    "Date": "2020/6/23",
+                    "StarCount": "4",
+                    "Comment": "名不虛傳, 好棒!"
+                },
+                {
+                    "Pic": "customer5.jpg",
+                    "Name": "愛吃貓的魚",
+                    "Date": "2020/12/13",
+                    "StarCount": "4",
+                    "Comment": "非常好吃, 讚!"
+                }],
+            "RefProdAry": [
+                {
+                    "uid": "2004",
+                    "Pic": "1196ea9c120242ac110004.jpg",
+                    "Name": "草莓奶油蛋糕"
+                },
+                {
+                    "uid": "2007",
+                    "Pic": "opera-facile.jpg",
+                    "Name": "歌劇院蛋糕"
+                },
+                {
+                    "uid": "2009",
+                    "Pic": "c2-1606802772.jpg",
+                    "Name": "櫻桃巧克力紅蛋糕"
+                },
+                {
+                    "uid": "2004",
+                    "Pic": "20150408-french-madeleines-with-almonds-and-apricot-nila-jones-4-1500x1125.jpg",
+                    "Name": "瑪德蓮"
+                },
+                {
+                    "uid": "2007",
+                    "Pic": "20180227004451_20.jpg",
+                    "Name": "檸檬塔"
+                }]
+        };
+
+        var prodAry = new Array();
+        prodAry.push(Prod2001);
+        prodAry.push(Prod2002);
+        prodAry.push(Prod2003);
+
+        function getUrlQueryParams(url) {
+            var queryString = url.split("?")[1];
+            if (queryString == undefined) {
+                return undefined;
+            }
+
+            var keyValuePairs = queryString.split("&");
+            var keyValue = [];
+            var queryParams = {};
+            keyValuePairs.forEach(function (pair) {
+                keyValue = pair.split("=");
+                queryParams[keyValue[0]] = decodeURIComponent(keyValue[1]).replace(/\+/g, " ");
+            });
+
+            return queryParams;
+        }
+
+        window.onload = function () {
+            // 檢查URL上有否帶入ProdUid(例: uid=2001) 的字串串
+            var param = getUrlQueryParams(window.location.href);
+
+            if (param == undefined || param.uid == undefined) {
+                updateProdInfo(1, 2001);  // default product info
+            } else {
+                updateProdInfo(1, param.uid);  // default product info
+            }
+
+        }
+
+        /*這個FUNCTION要有SERVER才可以從後端要資料 
+        function updateProdInfo(type, uid) { 
+            var xhr = new XMLHttpRequest();  // 發REQUEST到後端要資料
+            
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) { // 成功, 資料有回來
+                    console.log("Response=" + this.responseText);
+                    
+                    var strCurProd = this.responseText;  // SERVER回來的資料
+                    curProd = JSON.parse(strCurProd);  // 將字串轉成JSON OBJECT並指定給curProd
+                   
+                    displayProdInfo();
+                }
+            };
+            
+            var dataObj = {"ReqType": "1", "ProdUid" : "2001"};  // default
+            dataObj.ReqType = type;
+            dataObj.ProdUid = uid;
+            var data = JSON.stringify(dataObj);
+            xhr.open("POST", "http://localhost:8080/CakeServer/CakeServlet", true);
+            xhr.send(data);
+        }
+        */
+
+        /*這個FUNCTION不用SERVER, 資料定義在前端, 直接指定給curProd */
+        function updateProdInfo(type, uid) {
+
+            var idx = (parseInt(uid) % 3);
+            curProd = prodAry[idx]; /* 直接指定測試資料 */
+
+            displayProdInfo();
+        }
+
+
+        function displayProdInfo() {
+            document.getElementById("pProdTitle").innerHTML = curProd.Title;
+            document.getElementById("pProdInfo").innerHTML = curProd.Info;
+            document.getElementById("pPrice").innerHTML = "NT$ " + curProd.Price;
+            document.getElementById("pExpiredDate").innerHTML = "保存日期: " + curProd.ExpiredDate;
+            document.getElementById("imgProd").src = "images/" + curProd.ProdPic;
+
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+
+            // 顯示所有評語
+            var aryComments = curProd.CommentAry;
+
+            var strPerComm = "";
+            for (var i = 0; i < aryComments.length; i++) {
+                var info = aryComments[i];
+
+                strPerComm += "<div class='divRow'> <img  src='images/";
+                strPerComm += info.Pic + "' height='30px' width='30px' align='left'><pre>";
+                strPerComm += info.Name + "      時間: " + info.Date + "     商品評價: </pre>";
+                var countStar = parseInt(info.StarCount);
+                for (var j = 0; j < countStar; j++) {
+                    strPerComm += "<img  src='images/star2.png' align='center' width='20px' height='20px'>";
+                }
+
+                if (countStar < 5) {
+                    for (var k = 0; k < 5 - countStar; k++) {
+                        strPerComm += "<img  src='images/star1.png' align='center' width='20px' height='20px'>";
+                    }
+                }
+
+                strPerComm += "</div><p style='margin-left: 50px;'>評語: " + info.Comment + "</p>";
+                strPerComm += "<div class='divLine'></div>";
+
+                document.getElementById("divComments").innerHTML = strPerComm;
+            }
+
+            displayRefProd();
+        }
+
+        // 密碼驗證
+        function checkPassword() {
+            if (document.getElementById("psw").value !=
+                document.getElementById("pswconfirm").value) {
+                alert("驗證密碼失敗!，請重新輸入!")
+            }
+
+
+        }
+
+        //  show alert message
+        function alertMsg(msg) {
+            alert(msg);
+        }
+
+        // Sidenav(側拉菜單)
+        function openNav() {
+            document.getElementById("mySidepanel").style.width = "200px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidepanel").style.width = "0";
+        }
+
+        var dropdown = document.getElementsByClassName("dropdown-btn");
+        var i;
+
+        //Dropdown Menu in Sidenav(Sidenav中的下拉菜單)
+        for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var dropdownContent = this.nextElementSibling;
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                } else {
+                    dropdownContent.style.display = "block";
+                }
+            });
+        }
+
+        // Clickable Dropdown(點擊菜單)
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+
+
+
+
+
+
+        /*>>>>>>>>>>>>>本頁內容+格式*/
+
+        $(document).ready(function () {
+            $.spin.imageBasePath = './spinbutton/img/spin1/';
+
+            $('#spnbut').spin({
+                min: 1,
+                max: 99,
+                changed: function (n, o) {
+                    console.log("TEMP>>>spin button: v=" + n);
+                }
+            });
+
+        });
+
+        // 全域變數
+        var curRefProdIdx = parseInt(0);
+
+        function displayRefProd(x) {
+            // 顯示所有參考商品
+            var aryRefProd = curProd.RefProdAry;
+
+            var strRefProd = "";
+
+            var countRefProd = aryRefProd.length;
+
+            if (x == "R") {
+                if (curRefProdIdx > 0) {
+                    curRefProdIdx -= 6;
+                }
+            } else {
+                if (curRefProdIdx == countRefProd) {
+                    return;
+                }
+            }
+
+            for (var i = 0; i < 5; i++) {  // 參考商品最多顯示6個
+                var info = aryRefProd[curRefProdIdx];
+                curRefProdIdx++;
+
+                if (i == 5 || curRefProdIdx == countRefProd) {
+                    if (curRefProdIdx == countRefProd) {
+                        curRefProdIdx = 0;
+                    }
+
+                    break;
+                }
+
+                strRefProd += "<div><img  src='images/" + info.Pic + "' width='180px' height='180px' onclick='updateProdInfo(1, " + info.uid + ")'>";
+                strRefProd += "<span>" + info.Name + "</span></div>";
+            }
+
+            document.getElementById("divRefImg").innerHTML = strRefProd;
+        }
+
+        function doShopping() {
+            var strItem = '{"uid" : "' + curProd.uid + '",' +
+                '"img" : "images/' + curProd.ProdPic + '",' +
+                '"name" : "' + curProd.Title + '",' +
+                '"price" : "' + curProd.Price + '",' +
+                '"count" : "' + document.getElementById("spnbut").value + '"}';
+            var itemObj = JSON.parse(strItem);
+
+            var items = localStorage.getItem("ShopCart");
+            var aryItems;
+
+            if (items == undefined) {
+                aryItems = new Array();
+            } else {
+                aryItems = JSON.parse(items);
+            }
+
+            aryItems.push(itemObj);
+            localStorage.setItem("ShopCart", JSON.stringify(aryItems));
+        }
+    </script>
+</head>
+
+<body>
+
+    <h1 style="font-size: 32pt ;position: absolute;top: 11%; left: 44%;">商品資訊</h1>
+    <img src="images/line57.png" width="93%" style="position: absolute;top:18%;left:4%;z-index: -23;">
+
+
+    <div class="divTop">
+        <div class="divProd1">
+            <img id="imgProd" height="92%" width="92%">
+            <p align="center" id="pExpiredDate" style="position: relative;left: 150%;top:5%;"></p>
+        </div>
+        <div class="divProd2">
+            <p id="pProdTitle"></p>
+            <p id="pProdInfo"></p>
+            <p id="pPrice"></p>
+            <label id="lblAmount">購買數量</label>
+            <input type="number" id="spnbut" size="3" value="1" width="50px" height="130px">
+            <p style="position: relative;left: 51%; top: -11%; width: 600px;">新站營運! 所有消費者皆享95折優惠<br>註冊本站會員，即可享受運費0元!</p>
+            <br>
+            <div class="revisionbut">
+                <a onclick="doShopping()" href="ShopCart.html"><button
+                        id="butOrder1">直接購買</button></a>&nbsp;&nbsp;<button id="butOrder2"
+                    onclick="doShopping()">加入購買車</button>
+            </div>
+        </div>
+    </div>
+
+
+    <h2 id="hComments1">商品評價區</h2>
+    <div class="commentborder">
+
+
+        <div id="divComments">
+            <!--用來填評價的區域 -->
+        </div>
+    </div>
+
+    <h2 id="hComments2">商品推薦區</h2>
+    <hr width="95%" size="2" style="position: absolute; top: 227%; left: 2.5%;background-color: black;">
+
+
+    <div class="divRefProd">
+
+        <button id="butLeftArw" onclick="displayRefProd('R')">&laquo;</button>
+        <button id="butRightArw" onclick="displayRefProd('L')">&raquo;</button>
+
+        <span>
+            <div id="divRefImg">
+                <!--用來填參考商品的區域 -->
+            </div>
+            <br>
+
+
+        </span>
+    </div>
+</body>
+
+<footer>
+    <div>
+        <img src="images/262312.jpg" width="75" height="75" style="position: relative; top: 24%;left: 730%;">
+    </div>
+    <div class="foot-text">
+        服務時間：周一至周五11:00~17:50<br>
+        聯絡資訊：(03)9921-8847<br>
+        地址：桃園市中壢區普忠里中北路200號<br>
+    </div>
+    <font style="align-items:center; color:white; position: absolute; top: 80%; left: 40%;">CYCUIM_20210109&copy; D33
+        All
+        Rights Reserved.</font>
+</footer>
+
+</html>

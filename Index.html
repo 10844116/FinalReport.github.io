@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>首頁</title>
+  <link href="css/head.css" rel="stylesheet" type="text/css">
+  <link href="css/search.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" href="images/cake52.png">
+  <script type="text/javascript" src="js/utils.js"></script>
+
+
+  <div id="mySidepanel" class="sidepanel">
+    <a href="#" class="closebtn" onclick="closeNav()">×</a>
+    <a href="Index.html">首頁</a>
+    <button class="dropdown-btn">商品分類<i class="fa fa-caret-down"></i></button>
+    <div class="dropdown-container">
+      <a href="ProdList.html">所有商品</a>
+      <a href="ProdList.html?cat=2">蛋糕</a>
+      <a href="ProdList.html?cat=3">塔類</a>
+      <a href="ProdList.html?cat=4">餅乾</a>
+      <a href="ProdList.html?cat=5">常溫點心</a>
+    </div>
+    <a href="Promotion.html">促銷活動</a>
+    <a href="Q&A.html">常見問題</a>
+    <a href="About.html">關於我們</a>
+  </div>
+  <button class="openbtn" onclick="openNav()">☰ </button>
+
+  <div style="position: fixed;top: 1.1%;left: 5.5%;"><img src="images/D33.png" width="140" height="49"></div>
+
+  <div class="img2-header">
+    <div class="dropdown">
+      <img onclick="myFunction()" class="dropbtn" src="images/images.png" width="45px" height="45" title="會員專區"></img>
+      <div id="myDropdown" class="dropdown-content">
+
+        <span onclick="document.getElementById('id01').style.display='block'"><a href="#"
+            style="padding: 12px 16px; ">登入</a></span>
+        <span onclick="document.getElementById('id02').style.display='block'"><a href="#"
+            style="padding: 12px 16px; ">註冊</a></span>
+
+        <a onclick="chkLogin()" href="PersonalInfo.html">個人資料修改</a>
+        <a onclick="chkLogin()" href="Order.html">訂單紀錄</a>
+        <a  onclick="doLogout()" href="Index.html">登出</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="img1-header">
+    <a onclick="chkLogin()" href="ShopCart.html"><img src="images/shopcart2.png" width="50" height="50" title="購物車">
+    </a>
+  </div>
+
+  <!-- 會員登入 -->
+  <div id="id01" class="modal">
+    <form class="modal-content animate" style="width: 350px;">
+      <div class="imgcontainer">
+        <span onclick="document.getElementById('id01').style.display='none'" class="close"
+          title="Close Modal">&times;</span>
+        <div class="contant02" style="font-size:25px;">會員登入</div>
+      </div>
+
+      <div class="container">
+        <label for="uname"><b>帳號</b></label>
+        <span class="ipt"><input id="user" type="text" placeholder="輸入帳號" name="uname" required></span>
+
+        <label for="psw"><b>密碼</b></label>
+        <span class="ipt"><input type="password" placeholder="輸入密碼" name="psw" required></span>
+
+        <span class="btn02"><button onclick="doLogin()" type="display: flex;" class="sign">登入</button></span>
+        <label>
+          <span class="ipt"><input id="chkRemem" type="checkbox" checked="checked" name="remember">記住我的帳號</span>
+        </label>
+      </div>
+
+      <div class="container" style="background-color:#dddd; ">
+        <button type="button" onclick="document.getElementById('id01').style.display='none'"
+          class="cancelbtn">取消</button>
+        <span onclick="document.getElementById('id01').style.display='none'; 
+            document.getElementById('id02').style.display='block'" class="register" style="margin-left: 72px;"><a
+            href="#">免費註冊</a></span>
+        <span class="psw" onclick="document.getElementById('id01').style.display='none';
+                alertMsg('新密碼已寄送至您的手機, 請重新登入!')">
+          <a href="#">忘記密碼?</a></span>
+
+      </div>
+    </form>
+  </div>
+
+  <!-- 註冊會員 -->
+  <div id="id02" class="modal">
+    <form class="modal-content animate" style="width: 350px;" action="/action2_page.php" method="post">
+      <div class="imgcontainer">
+        <span onclick="document.getElementById('id02').style.display='none'" class="close"
+          title="Close Modal">&times;</span>
+        <div class="contant02" style="font-size:25px;">註冊會員</div>
+      </div>
+
+      <div class="container">
+        <label for="uid"><b>姓名</b></label>
+        <span class="ipit"><input type="text" placeholder="請輸入真實姓名" name="uid" required></span>
+
+        <label for="cellpone"><b>手機號碼</b></label>
+        <span class="ipt"><input type="text" placeholder="請輸手機號碼" name="cellphone" required></span>
+
+        <label for="uname"><b>帳號</b></label>
+        <span class="ipt"><input type="text" placeholder="請輸入帳號" name="uname" required></span>
+
+        <label for="psw"><b>設定密碼</b></label>
+        <span class="ipt"><input type="password" placeholder="請輸入密碼" id="psw" required></span>
+
+        <label for="pswconfirm"><b>密碼確定</b></label>
+        <span class="ipt"><input type="password" placeholder="請再次輸入密碼" id="pswconfirm" required></span>
+
+        <span class="btn03" onclick="checkPassword()"><button type="submit" class="sign">立即註冊</button></span>
+      </div>
+
+      <div class="container" style="background-color:#dddd; ">
+        <button type="button" onclick="document.getElementById('id02').style.display='none'"
+          class="cancelbtn">取消註冊</button>
+      </div>
+    </form>
+  </div>
+
+  <!--搜尋-->
+  <div class="search-container">
+    <form id="frmSearch" action="ProdList.html">
+      <input id="inSearchTxt" type="text" placeholder="商品查詢" name="cat">
+      <button onclick="onSearch()" type="submit">
+        <i class="fa fa-search"></i>
+      </button>
+    </form>
+  </div>
+
+
+  <script>
+    window.onload = function () {
+      if (document.getElementById("chkRemem").checked == true) {
+        var strUser = sessionStorage.getItem("User");
+
+        if (strUser != null) {
+          document.getElementById("user").value = strUser;
+        }
+      }
+    }
+
+    // 密碼驗證
+    function checkPassword() {
+      if (document.getElementById("psw").value !=
+        document.getElementById("pswconfirm").value) {
+        alert("驗證密碼失敗!，請重新輸入!")
+      }
+
+
+    }
+
+    // 顯示錯誤提醒 
+    function alertMsg(msg) {
+      alert(msg);
+    }
+
+    // Sidenav(側拉菜單)
+    function openNav() {
+      document.getElementById("mySidepanel").style.width = "200px";
+    }
+
+    function closeNav() {
+      document.getElementById("mySidepanel").style.width = "0";
+    }
+
+    var dropdown = document.getElementsByClassName("dropdown-btn");
+    var i;
+
+    //Dropdown Menu in Sidenav(Sidenav中的下拉菜單)
+    for (i = 0; i < dropdown.length; i++) {
+      dropdown[i].addEventListener("click", function () {
+        this.classList.toggle("active");
+        var dropdownContent = this.nextElementSibling;
+        if (dropdownContent.style.display === "block") {
+          dropdownContent.style.display = "none";
+        } else {
+          dropdownContent.style.display = "block";
+        }
+      });
+    }
+
+    // Clickable Dropdown(點擊菜單)
+    function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    window.onclick = function (event) {
+      if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+  </script>
+
+
+</head>
+
+<body>
+
+  <!--(動態)廣告切換-->
+  <div class="slideshow-container">
+    <div class="mySlides fade">
+      <img src="images/2021-01-07_234720.png" style="width:105% ;height: 460px; position: relative; left: -1.5%;">
+    </div>
+
+    <div class="mySlides fade">
+      <img src="images/2021-01-07_234137.png" style="width:105% ;height: 460px; position: relative; left: -1.5%;">
+    </div>
+
+    <div class="mySlides fade">
+      <img src="images/2021-01-07_234645.png" style="width:105% ;height: 460px; position: relative; left: -1.5%; ">
+    </div>
+  </div>
+
+  <div class="slideshow-container2" style="height: 460px;">
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+  </div>
+  <br>
+
+  <div style="text-align:center; position: relative; top: 465px;">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+  </div>
+
+
+
+  <div style="position: absolute; top:97% ;left: 43%;">
+    <font size="100%" family="Microsoft YaHei"><b>網站功能</b></font>
+  </div>
+  <div style="position: absolute; top:98% ;left: 5%; z-index: -12;"><img src="images/line99.png" height="99"
+      width="1160">
+  </div>
+
+  <div> <a href="ProdList.html"><img src="images/7150442.jpg" width="45%" height="350" class="appshow"
+        style="position: absolute; top:116% ;left:4%;"></a>
+    <div class="apptext" style="top: 118%; "> 商品一覽 </div>
+  </div>
+  <div> <a href="PersonalInfo.html"><img src="images/a77c0c4936765d1691f70c9c21705e35.png" width="45%" height="350"
+        class="appshow" style="position: absolute; top:116% ; left:52%;"></a>
+    <div class="apptext" style="top: 118%;left: 49.5%;"> 會員專區</div>
+  </div>
+  <div> <a href="Promotion.html"><<img src="images/b1d3c1b0-9144-11ea-bfaf-ab8f6fd27f5a.jpg" width="45%" height="350"
+      class="appshow" style="position: absolute; top:185% ;left:4%; "></a> 
+    <div class="apptext" style="top: 189%;"> 促銷活動</div>
+  </div>
+  <div><a href="Q&A.html"><img src="images/d3837040.jpg" width="45%" height="350" class="appshow"
+      style="position: absolute; top:185% ; left:52%; "></a> 
+    <div class="apptext" style="top: 189%;left: 49.5%;"> 常見問題</div>
+  </div>
+
+
+
+
+  <script>
+    //Slideshow動態照片
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) { slideIndex = 1 }
+      if (n < 1) { slideIndex = slides.length }
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex - 1].style.display = "block";
+      dots[slideIndex - 1].className += " active";
+    }
+  </script>
+
+
+</body>
+<footer>
+  <div>
+    <img src="images/262312.jpg" width="75" height="75" style="position: relative; top: 24%;left: 730%;">
+  </div>
+  <div class="foot-text">
+    服務時間：周一至周五11:00~17:50<br>
+    聯絡資訊：(03)9921-8847<br>
+    地址：桃園市中壢區普忠里中北路200號<br>
+  </div>
+  <font style="align-items:center; color:white; position: absolute; top: 80%; left: 40%;">CYCUIM_20210109&copy; D33
+    All
+    Rights Reserved.</font>
+</footer>
+
+</html>
