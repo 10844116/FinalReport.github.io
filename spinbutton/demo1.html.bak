@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+                    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>jQuery-spin demo 01</title>
+  <script src="//code.jquery.com/jquery-1.7.1.min.js"></script>
+  <script src="../jquery-spin.js"></script>
+  
+  <script>
+  $(document).ready(function(){
+		$.spin.imageBasePath = './img/spin1/';
+		$('#spin1').spin();
+		$('#spin2').spin({
+			interval: 5
+		});
+		$('#spin3').spin({
+			max: 10,
+			min: -5
+		});
+		$('#spin4').spin({
+			timeInterval: 250
+		});
+		$('#spin5').spin({
+			interval: 0.01
+		});
+		$('#spin6').spin({
+			lock: true
+		});
+		$('#spin7').spin({
+			beforeChange: function(n,o){
+				//$('<div>'+o+' to '+n+'</div>').appendTo($('#console'));
+				$('#console').text(o+' to '+n).show().fadeOut(400);
+			}
+		});
+		$('#spin8').spin({
+			imageBasePath: './img/spin2/'
+		});
+		$('#spin9').spin({
+			interval: 0.01,
+			format: function(val){
+				var ans = val.toString();
+				if(ans=='0'){
+					ans = '.0';
+				}else if(ans.substring(0,2)=='0.'){
+					ans = ans.substring(1, ans.length);
+				}
+				return ans;
+			}
+		});
+  });
+  </script>
+
+	<style>
+		input{
+			text-align: right;
+			vertical-align: middle;
+		}
+	</style>
+</head>
+<body>
+	<h1>jQuery Spin Demo</h1>
+	<form>
+		<input type="input" id="spin1" value="0" />
+		<p>interval: 5</p>
+		<input type="input" id="spin2" value="0" />
+		<p>max: 10, min: -5</p>
+		<input type="input" id="spin3" value="0" />
+		<p>timeInterval: 250</p>
+		<input type="input" id="spin4" value="0" />
+		<p>safe float calcuration</p>
+		<input type="input" id="spin5" value="9.95" />
+		<p>prohibit direct change</p>
+		<input type="input" id="spin6" value="0" />
+		<p>callback</p>
+		<input type="input" id="spin7" value="0" /><span id="console" style="margin-left: 30px;"></span>
+		<p>different surface</p>
+		<input type="input" id="spin8" value="0" />
+		<p>change format</p>
+		<input type="input" id="spin9" value=".0" />
+	</form>
+	<div id="debug">
+
+	</div>
+	<div style="margin-top: 50px;">
+		<ul>
+			<li><a href="http://plugins.jquery.com/project/spin-button">jQuery Plugins</a></li>
+			<li><a href="http://code.google.com/p/jquery-spin-button/">Google Code</a></li>
+			<li><a href="http://screw-axis.com/development/jquery-spin/">Document in Japanese</a></li>
+		</ul>
+	</div>
+</body>
+</html>
