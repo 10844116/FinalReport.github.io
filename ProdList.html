@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品一覽</title>
+    <link href="css/showgoods.css" rel="stylesheet" type="text/css">
+    <link href="css/search.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="images/cake52.png">
+    <script type="text/javascript" src="js/utils.js"></script>
+
+
+    <div id="mySidepanel" class="sidepanel">
+        <a href="#" class="closebtn" onclick="closeNav()">×</a>
+        <a href="Index.html">首頁</a>
+        <button class="dropdown-btn">商品分類<i class="fa fa-caret-down"></i></button>
+        <div class="dropdown-container">
+            <a href="ProdList.html">所有商品</a>
+            <a href="ProdList.html?cat=2">蛋糕</a>
+            <a href="ProdList.html?cat=3">塔類</a>
+            <a href="ProdList.html?cat=4">餅乾</a>
+            <a href="ProdList.html?cat=5">常溫點心</a>
+        </div>
+        <a href="Promotion.html">促銷活動</a>
+        <a href="Q&A.html">常見問題</a>
+        <a href="About.html">關於我們</a>
+    </div>
+
+    <button class="openbtn" onclick="openNav()">☰ </button>
+
+    <div style="position: fixed;top: 1.1%;left: 5.5%;"><img src="images/D33.png" width="140" height="49"></div>
+
+    <div class="img2-header">
+        <div class="dropdown">
+            <img onclick="myFunction()" class="dropbtn" src="images/images.png" width="45px" height="45"
+                title="會員專區"></img>
+            <div id="myDropdown" class="dropdown-content">
+
+                <span onclick="document.getElementById('id01').style.display='block'"><a href="#"
+                        style="padding: 12px 16px; ">登入</a></span>
+                <span onclick="document.getElementById('id02').style.display='block'"><a href="#"
+                        style="padding: 12px 16px; ">註冊</a></span>
+
+                <a onclick="chkLogin()" href="PersonalInfo.html">個人資料修改</a>
+                <a onclick="chkLogin()" href="Order.html">訂單紀錄</a>
+                <a onclick="doLogout()" href="Index.html">登出</a>
+            </div>
+        </div>
+    </div>
+    <div class="img1-header">
+        <a onclick="chkLogin()" href="ShopCart.html"><img src="images/shopcart2.png" width="50" height="50" title="購物車">
+        </a>
+    </div>
+
+    <!-- 會員登入 -->
+    <div id="id01" class="modal">
+        <form class="modal-content animate" style="width: 350px;">
+            <div class="imgcontainer">
+                <span onclick="document.getElementById('id01').style.display='none'" class="close"
+                    title="Close Modal">&times;</span>
+                <div class="contant02" style="font-size:25px;">會員登入</div>
+            </div>
+
+            <div class="container">
+                <label for="uname"><b>帳號</b></label>
+                <span class="ipt"><input id="user" type="text" placeholder="輸入帳號" name="uname" required></span>
+
+                <label for="psw"><b>密碼</b></label>
+                <span class="ipt"><input type="password" placeholder="輸入密碼" name="psw" required></span>
+
+                <span class="btn02"><button onclick="doLogin()" type="display: flex;" class="sign">登入</button></span>
+                <label>
+                    <span class="ipt"><input id="chkRemem" type="checkbox" checked="checked"
+                            name="remember">記住我的帳號</span>
+                </label>
+            </div>
+
+            <div class="container" style="background-color:#dddd; ">
+                <button type="button" onclick="document.getElementById('id01').style.display='none'"
+                    class="cancelbtn">取消</button>
+                <span onclick="document.getElementById('id01').style.display='none'; 
+            document.getElementById('id02').style.display='block'" class="register" style="margin-left: 72px;"><a
+                        href="#">免費註冊</a></span>
+                <span class="psw" onclick="document.getElementById('id01').style.display='none';
+                alertMsg('新密碼已寄送至您的手機, 請重新登入!')">
+                    <a href="#">忘記密碼?</a></span>
+
+            </div>
+        </form>
+    </div>
+
+    <!-- 註冊會員 -->
+    <div id="id02" class="modal">
+        <form class="modal-content animate" style="width: 350px;" action="/action2_page.php" method="post">
+            <div class="imgcontainer">
+                <span onclick="document.getElementById('id02').style.display='none'" class="close"
+                    title="Close Modal">&times;</span>
+                <div class="contant02" style="font-size:25px;">註冊會員</div>
+            </div>
+
+            <div class="container">
+                <label for="uid"><b>姓名</b></label>
+                <span class="ipit"><input type="text" placeholder="請輸入真實姓名" name="uid" required></span>
+
+                <label for="cellpone"><b>手機號碼</b></label>
+                <span class="ipt"><input type="text" placeholder="請輸手機號碼" name="cellphone" required></span>
+
+                <label for="uname"><b>帳號</b></label>
+                <span class="ipt"><input type="text" placeholder="請輸入帳號" name="uname" required></span>
+
+                <label for="psw"><b>設定密碼</b></label>
+                <span class="ipt"><input type="password" placeholder="請輸入密碼" id="psw" required></span>
+
+                <label for="pswconfirm"><b>密碼確定</b></label>
+                <span class="ipt"><input type="password" placeholder="請再次輸入密碼" id="pswconfirm" required></span>
+
+                <span class="btn03" onclick="checkPassword()"><button type="submit" class="sign">立即註冊</button></span>
+            </div>
+
+            <div class="container" style="background-color:#dddd; ">
+                <button type="button" onclick="document.getElementById('id02').style.display='none'"
+                    class="cancelbtn">取消註冊</button>
+            </div>
+        </form>
+    </div>
+
+    <!--搜尋-->
+    <div class="search-container">
+        <form id="frmSearch" action="ProdList.html">
+            <input id="inSearchTxt" type="text" placeholder="商品查詢" name="cat">
+            <button onclick="onSearch()" type="submit">
+                <i class="fa fa-search"></i>
+            </button>
+        </form>
+    </div>
+
+    <script>
+        var lstAllProd = new Array();  // 存放所有商品
+        var lstCake = new Array(0, 1, 2, 3, 4, 5, 6, 7, 19, 20);  // 蛋糕
+        var lstPie = new Array(8, 9, 10, 11,23);  // 蛋塔
+        var lstCookie = new Array(12, 13, 14, 15);  // 餅乾
+        var lstDesert = new Array(16, 17, 18,22,21);  // 點心
+
+
+        window.onload = function () {
+            // 檢查URL上有否帶入商品類型(例: cat=2) 的字串串
+            var param = getUrlQueryParams(window.location.href);
+            var typeProd = 0;
+
+            // cat: 1=所有商品  2=蛋糕  3=蛋塔   4=餅乾  5=點心
+            if (param == undefined || param.cat == undefined) {
+                typeProd = 1;  // 預設為全部商品
+            } else {
+                typeProd = parseInt(param.cat);
+            }
+
+            var lstProd = document.getElementsByClassName("aa");
+
+            for (var i = 0; i < lstProd.length; i++) {
+                var infoProd = new Array();
+
+                infoProd.push(lstProd[i].getElementsByTagName("img")[0].src); // 商品圖像  
+                infoProd.push(lstProd[i].innerHTML.split(">")[2].split("<")[0].trim());  // 商品名稱
+
+                lstAllProd.push(infoProd);
+            }
+
+            displayProd(typeProd);
+        }
+
+        function displayProd(type) { // type: 1=所有商品  2=蛋糕  3=蛋塔   4=餅乾  5=點心
+            var div = document.getElementById("divProdLst");
+            div.innerHTML = "";
+
+            var strProdLst = "";
+            var curHeight = 38;
+            var curLeft = 20;
+            const h = 53;
+            const l = 20;
+
+            switch (type) {
+                case 1:
+                    for (var i = 0; i < lstAllProd.length; i++) {
+                        strProdLst += '<div class="aa" onclick="toProdIntro(2002)" style="top: ' + curHeight + '%; left: ' +
+                            curLeft + '%;"><img src="' + lstAllProd[i][0] + '" ><br>' + lstAllProd[i][1] + '<hr></div>';
+
+                        if (((i + 1) % 4) == 0) {
+                            curHeight += h;
+                            curLeft = l;
+                        } else {
+                            curLeft += l;
+                        }
+                    }
+                    break;
+                case 2:
+                    for (var i = 0; i < lstCake.length; i++) {
+                        strProdLst += '<div class="aa" onclick="toProdIntro(2002)" style="top: ' + curHeight + '%; left: ' +
+                            curLeft + '%;"><img src="' + lstAllProd[lstCake[i]][0] + '" ><br>' + lstAllProd[lstCake[i]][1] + '<hr></div>';
+
+                        if (((i + 1) % 4) == 0) {
+                            curHeight += h;
+                            curLeft = l;
+                        } else {
+                            curLeft += l;
+                        }
+                    }
+                    break;
+                case 3:
+                    for (var i = 0; i < lstPie.length; i++) {
+                        strProdLst += '<div class="aa" onclick="toProdIntro(2002)" style="top: ' + curHeight + '%; left: ' +
+                            curLeft + '%;"><img src="' + lstAllProd[lstPie[i]][0] + '" ><br>' + lstAllProd[lstPie[i]][1] + '<hr></div>';
+
+                        if (((i + 1) % 4) == 0) {
+                            curHeight += h;
+                            curLeft = l;
+                        } else {
+                            curLeft += l;
+                        }
+                    }
+                    break;
+                case 4:
+                    for (var i = 0; i < lstCookie.length; i++) {
+                        strProdLst += '<div class="aa" onclick="toProdIntro(2002)" style="top: ' + curHeight + '%; left: ' +
+                            curLeft + '%;"><img src="' + lstAllProd[lstCookie[i]][0] + '" ><br>' + lstAllProd[lstCookie[i]][1] + '<hr></div>';
+
+                        if (((i + 1) % 4) == 0) {
+                            curHeight += h;
+                            curLeft = l;
+                        } else {
+                            curLeft += l;
+                        }
+                    }
+                    break;
+                case 5:
+                    for (var i = 0; i < lstDesert.length; i++) {
+                        strProdLst += '<div class="aa" onclick="toProdIntro(2002)" style="top: ' + curHeight + '%; left: ' +
+                            curLeft + '%;"><img src="' + lstAllProd[lstDesert[i]][0] + '" ><br>' + lstAllProd[lstDesert[i]][1] + '<hr></div>';
+
+                        if (((i + 1) % 4) == 0) {
+                            curHeight += h;
+                            curLeft = l;
+                        } else {
+                            curLeft += l;
+                        }
+                    }
+                    break;
+                default:
+                    alert("Error! unknown type: type=" + type);
+            }
+
+            div.innerHTML = strProdLst;
+        }
+
+        // 密碼驗證
+        function checkPassword() {
+            if (document.getElementById("psw").value !=
+                document.getElementById("pswconfirm").value) {
+                alert("驗證密碼失敗!，請重新輸入!")
+            }
+
+
+        }
+
+        //  show alert message
+        function alertMsg(msg) {
+            alert(msg);
+        }
+
+        // Sidenav(側拉菜單)
+        function openNav() {
+            document.getElementById("mySidepanel").style.width = "200px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidepanel").style.width = "0";
+        }
+
+        var dropdown = document.getElementsByClassName("dropdown-btn");
+        var i;
+
+        //Dropdown Menu in Sidenav(Sidenav中的下拉菜單)
+        for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var dropdownContent = this.nextElementSibling;
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                } else {
+                    dropdownContent.style.display = "block";
+                }
+            });
+        }
+
+        // Clickable Dropdown(點擊菜單)
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+        function toProdIntro(uid) {
+            location.href = "ProdIntro.html?uid=" + uid;
+        }
+
+    </script>
+
+
+
+</head>
+
+<body>
+
+    <h1 style="font-size: 32pt;position: absolute;top: 11%;left: 44%;"> 商品一覽 </h1>
+    <img src="images/line9.png" width="95%" height="12px" style="position: absolute;top:28%;left:3%;">
+
+    <div>
+        <marquee height="30" scrollamount="15" width="95%">新站活動！ 凡下單即可享有95折優惠，註冊會員更可享受免運費優惠！</marquee>
+    </div>
+
+    <table class="item">
+        <tr>
+            <td onclick="displayProd(1)" style="background-color: #dddd;">所有商品</td>
+        </tr>
+        <tr>
+            <td onclick="displayProd(2)">蛋糕</td>
+        </tr>
+        <tr>
+            <td onclick="displayProd(3)">塔類</td>
+        </tr>
+        <tr>
+            <td onclick="displayProd(4)">餅乾</td>
+        </tr>
+        <tr>
+            <td onclick="displayProd(5)">常溫點心</td>
+        </tr>
+    </table>
+
+    <div id="divProdLst">
+        <!-- 只加了三個連結, 讓它看起來會動(DEMO) -->
+        <div class="aa" onclick="toProdIntro(2001)" ><img
+                src="images/1196ea9c120242ac110004.jpg"><br>草莓奶油蛋糕
+            <hr>
+        </div>
+        <div class="aa" onclick="toProdIntro(2002)" ><img
+                src="images/3578-600x600.jpg"><br>黃檸檬蛋糕
+            <hr>
+        </div>
+        <div class="aa" onclick="toProdIntro(2003)"><img
+                src="images/1588062059-1914771198.jpg"><br>鮮奶油芒果蛋糕
+            <hr>
+        </div>
+        <div class="aa" ><img src="images/00-2.jpg"><br>乳酪蛋糕
+            <hr>
+        </div>
+
+
+        <div class="aa" ><img
+                src="images/5706ec80f2f645e3b3810eb154d7cfb1_1080w_1619h.jpg"><br>蒙布朗栗子蛋糕
+            <hr>
+        </div>
+        <div class="aa" ><img src="images/opera-facile.jpg" width="200"
+                height="180"><br>歌劇院蛋糕
+            <hr>
+        </div>
+        <div class="aa" ><img src="images/unnamed.jpg"><br>抹茶瑞士捲
+            <hr>
+        </div>
+        <div class="aa"><img src="images/c2-1606802772.jpg" width="200"
+                height="180"><br>櫻桃巧克力紅蛋糕
+            <hr>
+        </div>
+
+
+        <div class="aa" ><img
+                src="images/385431edf549405d877809a14028c762_3982w_2888h.jpg"><br>繽紛水果塔
+            <hr>
+        </div>
+        <div class="aa"><img
+                src="images/ff3d5e261358d47c5b64134b6a688b5fd5d4691e.jpg"><br>柴犬屁屁抹茶塔
+            <hr>
+        </div>
+        <div class="aa" ><img src="images/20180227004451_20.jpg" width="200"
+                height="180"><br>檸檬塔
+            <hr>
+        </div>
+        <div class="aa"><img src="images/11cceab6180242ac110003.jpg" width="200"
+                height="180"><br>火腿起司奶油鹹派
+            <hr>
+        </div>
+
+        <div class="aa"><img src="images/b5571c793c3744717f0dd286bc181121.jpg" width="200"
+                height="180"><br>貓咪餅乾
+            <hr>
+        </div>
+        <div class="aa"><img src="images/8cb4dedf1c4e963cf473c1225444c055.jpg" width="200"
+                height="180"><br>巫婆手指餅乾
+            <hr>
+        </div>
+        <div class="aa" style="top: 179%; left: 60%;"><img
+                src="images/8e6d9280-1b83-4a49-958d-0ba6f68e8583.jpg"><br>杏仁瓦片
+            <hr>
+        </div>
+        <div class="aa"><img
+                src="images/350_37_dd9b65d51b85574e837ec6ce221239d3_1599428106.png"><br>黑糖法蘭蘇薄餅
+            <hr>
+        </div>
+
+        <div class="aa"><img src="images/20190406143650_71.jpg" width="200"
+                height="180"><br>台式馬卡龍
+            <hr>
+        </div>
+        <div class="aa"><img src="images/20200517172918_42.jpg" width="200"
+                height="180"><br>法式馬卡龍
+            <hr>
+        </div>
+        <div class="aa"><img
+                src="images/20150408-french-madeleines-with-almonds-and-apricot-nila-jones-4-1500x1125.jpg" width="200"
+                height="180"><br>瑪德蓮
+            <hr>
+        </div>
+        <div class="aa"><img
+                src="images/brownie_4598a5d0a32f4770b6d1a8a5ed17af36.jpg"><br>布朗尼
+            <hr>
+        </div>
+
+        <div class="aa"><img src="images/large.jpg"><br>磅蛋糕
+            <hr>
+        </div>
+        <div class="aa"><img src="images/9579743.jpeg" width="200"
+                height="180"><br>草莓甜心杯子蛋糕
+            <hr>
+        </div>
+        <div class="aa"><img
+                src="images/06285ea952614f759af8ed89ca533ca7_1080w_864h.jpg" width="200"
+                height="180"><br>英式司康
+            <hr>
+        </div>
+        <div class="aa" style="top: 273%; left: 80%;"><img
+                src="images/original.png"><br>葡式蛋塔
+            <hr>
+        </div>
+</body>
+
+<footer>
+    <div>
+        <img src="images/262312.jpg" width="75" height="75" style="position: relative; top: 24%;left: 730%;">
+    </div>
+    <div class="foot-text">
+        服務時間：周一至周五11:00~17:50<br>
+        聯絡資訊：(03)9921-8847<br>
+        地址：桃園市中壢區普忠里中北路200號<br>
+    </div>
+    <font style="align-items:center; color:white; position: absolute; top: 80%; left: 40%;">CYCUIM_20210109&copy; D33
+        All
+        Rights Reserved.</font>
+</footer>
+
+</html>
