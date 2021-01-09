@@ -345,60 +345,60 @@
 			displaySum();
 		}
 
-		  function displaySum() {
-   var curTotal = 0;
-   var curDiscount = 0;
-   var count = 0;
+		function displaySum() {
+			var curTotal = 0;
+			var curDiscount = 0;
+			var count = 0;
 
-   // 找出有勾選的項目
-   var items = document.getElementsByName("chkbox-item");
-   for (var i = 0; i < items.length; i++) {  // 計算總價和件數
-    var item = aryItems[i];
+			// 找出有勾選的項目
+			var items = document.getElementsByName("chkbox-item");
+			for (var i = 0; i < items.length; i++) {  // 計算總價和件數
+				var item = aryItems[i];
 
-    if (items[i].checked == true) {
-     curTotal += (item.price * item.count);
-     count++;
-    }
-   }
+				if (items[i].checked == true) {
+					curTotal += (item.price * item.count);
+					count++;
+				}
+			}
 
-   // 顯示購買筆數於結帳按鈕
-   document.getElementById("checkout").innerText = "結帳(" + count + ")";
+			// 顯示購買筆數於結帳按鈕
+			document.getElementById("checkout").innerText = "結帳(" + count + ")";
 
-   if (count == 0) {
-    document.getElementById("total").innerHTML = "運費: $0  商品總金額: $0" +
-     "  活動共折抵: $0  結帳總金額: $0 (未選擇任何商品)";
-    return;
-   }
+			if (count == 0) {
+				document.getElementById("total").innerHTML = "運費: $0  商品總金額: $0" +
+					"  活動共折抵: $0  結帳總金額: $0 (未選擇任何商品)";
+				return;
+			}
 
-   if (document.getElementById("chkbox-member").checked == true) {
+			if (document.getElementById("chkbox-member").checked == true) {
 
-    if (document.getElementById("chkbox-freeship").checked == true) {
-     curDiscount = (curTotal * discountRate) + shipFee;
-     curShipFee = 0;
-    } else {
-     curDiscount = (curTotal * discountRate);
-     curShipFee = 40;
-    }
-   } else {
-    if (document.getElementById("chkbox-freeship").checked == true) {
-     curDiscount = shipFee;
-     curShipFee = 0;
-    } else {
-     curDiscount = 0;
-     curShipFee = 40;
-    }
+				if (document.getElementById("chkbox-freeship").checked == true) {
+					curDiscount = (curTotal * discountRate) + shipFee;
+					curShipFee = 0;
+				} else {
+					curDiscount = (curTotal * discountRate);
+					curShipFee = 40;
+				}
+			} else {
+				if (document.getElementById("chkbox-freeship").checked == true) {
+					curDiscount = shipFee;
+					curShipFee = 0;
+				} else {
+					curDiscount = 0;
+					curShipFee = 40;
+				}
 
-   }
+			}
 
-   var sum = (curTotal + shipFee - curDiscount);
-   document.getElementById("total").innerHTML = "運費: $" + curShipFee + "  商品總金額: $" + curTotal +
-    "  活動共折抵: $" + curDiscount + "  結帳總金額: $" + sum;
+			var sum = (curTotal + shipFee - curDiscount);
+			document.getElementById("total").innerHTML = "運費: $" + curShipFee + "  商品總金額: $" + curTotal +
+				"  活動共折抵: $" + curDiscount + "  結帳總金額: $" + sum;
 
-   localStorage.setItem("TotalCost", sum);
-   
-   localStorage.setItem("ShopCart", JSON.stringify(aryItems));  // 更新localstorage的資料
+			localStorage.setItem("TotalCost", sum);
 
-  }
+			localStorage.setItem("ShopCart", JSON.stringify(aryItems));  // 更新localstorage的資料
+
+		}
 
 		function selectAll() {
 
@@ -417,9 +417,8 @@
 		}
 
 		function doCheckout() {
-			localStorage.removeItem("ShopCart");
+			//localStorage.removeItem("ShopCart");
 		}
-
 	</script>
 </head>
 
