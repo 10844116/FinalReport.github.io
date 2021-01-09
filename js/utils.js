@@ -2,7 +2,7 @@ var Dictionary = new Array();
 Dictionary.push(["蛋糕", "2"]);
 Dictionary.push(["塔類", "3"]);
 Dictionary.push(["餅乾", "4"]);
-Dictionary.push(["常温點心", "5"]);
+Dictionary.push(["常溫點心", "5"]);
 
 function onSearch() {
     var inSearch = document.getElementById("inSearchTxt");
