@@ -138,6 +138,37 @@
     </div>
 
     <script>
+        window.onload = function () {
+            var strItems = localStorage.getItem("ShopCart");
+
+            if (strItems == null) {
+                return; // 沒有商品
+            } else {
+                aryItems = JSON.parse(strItems);
+            }
+
+            for (var x = 0; x < aryItems.length; x++) {
+                var newRow = document.getElementById('tblProdDetails').insertRow();
+                var newCell = newRow.insertCell();
+                newCell.innerHTML = "<p>" + aryItems[x].name + "</p>";
+                newCell = newRow.insertCell();
+                newCell.innerHTML = "<p>" + aryItems[x].count + "</p>";
+            }
+
+            var sum = localStorage.getItem("TotalCost");
+
+            if (sum == null) {
+                sum = "0";
+            }
+
+            document.getElementById("inTotal").value = "$" + sum;
+        }
+
+        function cleanItems() {
+            alert("謝謝您的採購， 您的購物明細將寄到您的EMAIL信箱！")
+            localStorage.removeItem("ShopCart");
+        }
+
         // 密碼驗證
         function checkPassword() {
             if (document.getElementById("psw").value !=
@@ -203,38 +234,24 @@
     <h1 style="font-size: 32pt;position: absolute;top: 11%;left: 43.5%;"> 交易方式 </h1>
     <img src="images/line999.png" width="90%" height="90px" style="position: absolute;top:19%;left:6.5%; z-index: -99;">
 
-    <table border="4" style="position: absolute;top: 35%;left: 15%;z-index: -4;">
+    <table id="tblProdDetails" border="4" style="position: absolute;top: 35%;left: 15%;z-index: -4;">
         <tr>
             <td colspan="2" style="text-align: center; background-color: black;color: white;font-weight: 800;">本次購買的商品為：
             </td>
         </tr>
         <tr>
-            <td>這裡是商品名稱</td>
-            <td>這裡是商品數量</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
+            <td>商品名稱</td>
+            <td>商品數量</td>
         </tr>
     </table>
     <div style="position: absolute;top: 65%;left: 16%;">
-        本次交易金額:<input type="text" name="money" value="$40" disabled="disabled">
+        <label>本次交易金額:</lable><input type="text" id="inTotal"
+                style="margin-left: 10px; width: 200px; border-style: outset;" disabled />
     </div>
 
 
-    <form style="position: absolute; top: 33%; left: 56%;line-height:45px;z-index: -2;">
+    <form onsubmit="cleanItems()"  action="index.html" 
+            style="position: absolute; top: 33%; left: 56%;line-height:45px;z-index: -2;">
         寄件人：<input style="width:210px;height: 30px;" type="text" required><br>
         電話：&nbsp;&nbsp;<input style="width:210px;height:28px;" type="tel" required><br>
         交易方式：<input type="radio" name="pay" value="貨到付款" checked>貨到付款<input type="radio" name="pay"
