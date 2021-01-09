@@ -11,7 +11,7 @@ fieldset{
   border: 4px dotted black;
   border-radius: 25px;
   position: absolute;
-  top: 102%;
+  top: 92%;
   z-index: -22;
 }
 table{
@@ -419,7 +419,7 @@ footer
 {
   background-color:#000000;
   position: absolute;
-  top: 345%;
+  top: 305%;
   left: -1%;
   width: 101%;
   display: flex;
