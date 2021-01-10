@@ -177,13 +177,14 @@
             var strProdLst = "";
             var curHeight = 38;
             var curLeft = 20;
-            const h = 52;
+            const h = 49;
             const l = 20;
 
+            var idxProdId = 0;
             switch (type) {
                 case 1:
                     for (var i = 0; i < lstAllProd.length; i++) {
-                        strProdLst += '<div class="aa" onclick="toProdIntro(2002)" style="top: ' + curHeight + '%; left: ' +
+                        strProdLst += '<div class="aa" onclick="toProdIntro(' + idxProdId + ')" style="top: ' + curHeight + '%; left: ' +
                             curLeft + '%;"><img src="' + lstAllProd[i][0] + '" ><br>' + lstAllProd[i][1] + '<hr></div>';
 
                         if (((i + 1) % 4) == 0) {
@@ -192,11 +193,14 @@
                         } else {
                             curLeft += l;
                         }
+
+                        idxProdId++;
+                        idxProdId = (idxProdId % 3);
                     }
                     break;
                 case 2:
                     for (var i = 0; i < lstCake.length; i++) {
-                        strProdLst += '<div class="aa" onclick="toProdIntro(2002)" style="top: ' + curHeight + '%; left: ' +
+                        strProdLst += '<div class="aa" onclick="toProdIntro(' + idxProdId + ')" style="top: ' + curHeight + '%; left: ' +
                             curLeft + '%;"><img src="' + lstAllProd[lstCake[i]][0] + '" ><br>' + lstAllProd[lstCake[i]][1] + '<hr></div>';
 
                         if (((i + 1) % 4) == 0) {
@@ -205,11 +209,14 @@
                         } else {
                             curLeft += l;
                         }
+
+                        idxProdId++;
+                        idxProdId = (idxProdId % 3);
                     }
                     break;
                 case 3:
                     for (var i = 0; i < lstPie.length; i++) {
-                        strProdLst += '<div class="aa" onclick="toProdIntro(2002)" style="top: ' + curHeight + '%; left: ' +
+                        strProdLst += '<div class="aa" onclick="toProdIntro(' + idxProdId + ')" style="top: ' + curHeight + '%; left: ' +
                             curLeft + '%;"><img src="' + lstAllProd[lstPie[i]][0] + '" ><br>' + lstAllProd[lstPie[i]][1] + '<hr></div>';
 
                         if (((i + 1) % 4) == 0) {
@@ -218,11 +225,14 @@
                         } else {
                             curLeft += l;
                         }
+
+                        idxProdId++;
+                        idxProdId = (idxProdId % 3);
                     }
                     break;
                 case 4:
                     for (var i = 0; i < lstCookie.length; i++) {
-                        strProdLst += '<div class="aa" onclick="toProdIntro(2002)" style="top: ' + curHeight + '%; left: ' +
+                        strProdLst += '<div class="aa" onclick="toProdIntro(' + idxProdId + ')" style="top: ' + curHeight + '%; left: ' +
                             curLeft + '%;"><img src="' + lstAllProd[lstCookie[i]][0] + '" ><br>' + lstAllProd[lstCookie[i]][1] + '<hr></div>';
 
                         if (((i + 1) % 4) == 0) {
@@ -231,11 +241,14 @@
                         } else {
                             curLeft += l;
                         }
+
+                        idxProdId++;
+                        idxProdId = (idxProdId % 3);
                     }
                     break;
                 case 5:
                     for (var i = 0; i < lstDesert.length; i++) {
-                        strProdLst += '<div class="aa" onclick="toProdIntro(2002)" style="top: ' + curHeight + '%; left: ' +
+                        strProdLst += '<div class="aa" onclick="toProdIntro(' + idxProdId + ')" style="top: ' + curHeight + '%; left: ' +
                             curLeft + '%;"><img src="' + lstAllProd[lstDesert[i]][0] + '" ><br>' + lstAllProd[lstDesert[i]][1] + '<hr></div>';
 
                         if (((i + 1) % 4) == 0) {
@@ -244,6 +257,9 @@
                         } else {
                             curLeft += l;
                         }
+
+                        idxProdId++;
+                        idxProdId = (idxProdId % 3);
                     }
                     break;
                 default:
@@ -252,6 +268,7 @@
 
             div.innerHTML = strProdLst;
         }
+        
 
         // 密碼驗證
         function checkPassword() {
@@ -347,7 +364,7 @@
             <td onclick="displayProd(5)">常溫點心</td>
         </tr>
     </table>
-	
+
     <div id="divProdLst" height="100%">
           <!-- 只加了三個連結, 讓它看起來會動(DEMO) -->
         <div class="aa" onclick="toProdIntro(2001)" style="top: 38%; left: 20%;"><img
@@ -431,7 +448,7 @@
                 height="180"><br>瑪德蓮
             <hr>
         </div>
-        <div class="aa" style="top: 226%; left: 80%;"><img src="images/Brownie_4598a5d0a32f4770b6d1a8a5ed17af36.jpg"
+        <div class="aa" style="top: 226%; left: 80%;"><img src="images/brownie_4598a5d0a32f4770b6d1a8a5ed17af36.jpg"
                ><br>布朗尼
             <hr>
         </div>
@@ -455,7 +472,7 @@
     </div>
 </body>
 
-<footer style="margin-top: 35%;">
+<footer style="margin-top: 25%;">
 	    <div>
 	        <img src="images/262312.jpg" width="75" height="75" style="position: relative; margin-top: 40%;left: 730%;">
 	    </div>
